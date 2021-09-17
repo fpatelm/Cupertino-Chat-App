@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cupertino_chat_app/screens/login/hello.dart';
-import 'package:cupertino_chat_app/screens/login/select_country.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,7 +18,7 @@ Future main() async {
 }
 
 Future _connectToFirebaseEmulator() async {
-  final fireStorePort = "8089";
+  final fireStorePort = "8090";
   final authPort = "9099";
   final localHost = Platform.isAndroid ? '10.0.2.2' : 'localhost';
   FirebaseFirestore.instance.settings = Settings(
@@ -35,6 +34,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
+      debugShowCheckedModeBanner: false,
       home: Hello(),
       theme: CupertinoThemeData(
           brightness: Brightness.light, primaryColor: Color(0xFF08C187)),

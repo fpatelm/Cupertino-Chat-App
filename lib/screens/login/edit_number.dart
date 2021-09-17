@@ -1,5 +1,6 @@
 import 'package:cupertino_chat_app/components/logo.dart';
 import 'package:cupertino_chat_app/screens/login/select_country.dart';
+import 'package:cupertino_chat_app/screens/login/verify_number.dart';
 import 'package:cupertino_list_tile/cupertino_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,12 @@ class _EditNumberState extends State<EditNumber> {
   var _enterPhoneNumber = TextEditingController();
   Map<String, dynamic> data = {"name": "Portugal", "code": "+351"};
   Map<String, dynamic>? dataResult;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -74,7 +81,15 @@ class _EditNumberState extends State<EditNumber> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 40),
             child: CupertinoButton.filled(
-                child: Text("Request code"), onPressed: () {}),
+                child: Text("Request code"),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => VerifyNumber(
+                                number: data['code']! + _enterPhoneNumber.text,
+                              )));
+                }),
           )
         ],
       ),
