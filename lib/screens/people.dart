@@ -13,10 +13,8 @@ class People extends StatelessWidget {
     Navigator.push(
         context,
         CupertinoPageRoute(
-            builder: (context) => ChatDetail(
-                  friendName: name,
-                  friendUid: uid,
-                )));
+            builder: (context) =>
+                ChatDetail(friendUid: uid, friendName: name)));
   }
 
   @override
