@@ -10,7 +10,7 @@ class UserName extends StatelessWidget {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   void createUserInFirestore() {
     users
-        .where('uid', isEqualTo: FirebaseAuth.instance.currentUser.uid)
+        .where('uid', isEqualTo: FirebaseAuth.instance.currentUser?.uid)
         .limit(1)
         .get()
         .then(
@@ -18,9 +18,9 @@ class UserName extends StatelessWidget {
         if (querySnapshot.docs.isEmpty) {
           users.add({
             'name': _text.text,
-            'phone': FirebaseAuth.instance.currentUser.phoneNumber,
+            'phone': FirebaseAuth.instance.currentUser?.phoneNumber,
             'status': 'Available',
-            'uid': FirebaseAuth.instance.currentUser.uid
+            'uid': FirebaseAuth.instance.currentUser?.uid
           });
         }
       },
@@ -50,7 +50,7 @@ class UserName extends StatelessWidget {
               child: Text("Continue"),
               onPressed: () {
                 FirebaseAuth.instance.currentUser
-                    .updateProfile(displayName: _text.text);
+                    ?.updateDisplayName( _text.text);
 
                 createUserInFirestore();
 

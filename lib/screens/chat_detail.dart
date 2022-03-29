@@ -20,7 +20,7 @@ class _ChatDetailState extends State<ChatDetail> {
   CollectionReference chats = FirebaseFirestore.instance.collection('chats');
   final friendUid;
   final friendName;
-  final currentUserId = FirebaseAuth.instance.currentUser.uid;
+  final currentUserId = FirebaseAuth.instance.currentUser?.uid;
   var chatDocId;
   var _textController = new TextEditingController();
   _ChatDetailState(this.friendUid, this.friendName);
@@ -45,7 +45,8 @@ class _ChatDetailState extends State<ChatDetail> {
               print(chatDocId);
             } else {
               await chats.add({
-                'users': {currentUserId: null, friendUid: null}
+                'users': {currentUserId: null, friendUid: null},
+                'names':{currentUserId:FirebaseAuth.instance.currentUser?.displayName,friendUid:friendName }
               }).then((value) => {chatDocId = value});
             }
           },
@@ -58,6 +59,7 @@ class _ChatDetailState extends State<ChatDetail> {
     chats.doc(chatDocId).collection('messages').add({
       'createdOn': FieldValue.serverTimestamp(),
       'uid': currentUserId,
+      'friendName':friendName,
       'msg': msg
     }).then((value) {
       _textController.text = '';

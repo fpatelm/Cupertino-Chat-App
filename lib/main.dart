@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cupertino_chat_app/screens/home_page.dart';
 import 'package:cupertino_chat_app/screens/login/hello.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
-      home: Hello(),
+      home: HomePage(),
       theme: CupertinoThemeData(
           brightness: Brightness.light, primaryColor: Color(0xFF08C187)),
     );

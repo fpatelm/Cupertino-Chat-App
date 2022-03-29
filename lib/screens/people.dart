@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class People extends StatelessWidget {
   People({Key? key}) : super(key: key);
-  var currentUser = FirebaseAuth.instance.currentUser.uid;
+  var currentUser = FirebaseAuth.instance.currentUser?.uid;
 
   void callChatDetailScreen(BuildContext context, String name, String uid) {
     Navigator.push(
@@ -47,7 +47,7 @@ class People extends StatelessWidget {
                   delegate: SliverChildListDelegate(
                     snapshot.data!.docs.map(
                       (DocumentSnapshot document) {
-                        Map<String, dynamic> data = document.data()!;
+                        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
                         return CupertinoListTile(
                           onTap: () => callChatDetailScreen(
                               context, data['name'], data['uid']),
