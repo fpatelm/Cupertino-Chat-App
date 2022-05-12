@@ -1,0 +1,10 @@
+rules_version = '2';
+service firebase.storage{
+  match /b/{bucket}/o {
+    match /{uid}/{allPaths=**} {
+      allow read    : if request.time < timestamp.date(2022, 10, 1);
+      allow write   : if request.time < timestamp.date(2022, 10, 1);
+      allow delete  : if request.time < timestamp.date(2022, 10, 1);
+    }
+  }
+}
