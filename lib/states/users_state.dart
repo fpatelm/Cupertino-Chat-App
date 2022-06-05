@@ -13,6 +13,8 @@ part 'users_state.g.dart';
 class UsersState = _UsersState with _$UsersState;
 
 abstract class _UsersState with Store {
+  var _currentUser = FirebaseAuth.instance.currentUser?.uid;
+
   @observable
   Map<String, dynamic> users = ObservableMap();
   final ImagePicker _picker = ImagePicker();
@@ -22,6 +24,25 @@ abstract class _UsersState with Store {
 
   var _profilePicUrl;
   var _usersCollection = FirebaseFirestore.instance.collection('users');
+
+  @observable
+  String _searchUser = '';
+
+  @computed
+  List<dynamic> get people {
+    return users.entries
+        .where((user) => user.key != _currentUser)
+        .where((user) => user.value['name']
+            .toLowerCase()
+            .startsWith(_searchUser.toLowerCase()))
+        .map((e) => e.value)
+        .toList();
+  }
+
+  @action
+  setSearchTerm(String value) {
+    this._searchUser = value;
+  }
 
   @action
   initUsersListener() {
