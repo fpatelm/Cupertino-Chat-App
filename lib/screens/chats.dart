@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cupertino_chat_app/screens/chat_detail.dart';
 import 'package:cupertino_chat_app/states/lib.dart';
 import 'package:cupertino_list_tile/cupertino_list_tile.dart';
@@ -14,12 +13,6 @@ class Chats extends StatefulWidget {
 }
 
 class _ChatsState extends State<Chats> {
-  @override
-  void initState() {
-    super.initState();
-    chatState.refreshChatsForCurrentUser();
-  }
-
   void callChatDetailScreen(BuildContext context, String name, String uid) {
     Navigator.push(
         context,
@@ -39,11 +32,31 @@ class _ChatsState extends State<Chats> {
                 SliverList(
                     delegate: SliverChildListDelegate(
                         chatState.messages.values.toList().map((data) {
-                  return CupertinoListTile(
-                    title: Text(data['friendName']),
-                    subtitle: Text(data['msg']),
-                    onTap: () => callChatDetailScreen(
-                        context, data['friendName'], data['friendUid']),
+                  return Observer(
+                    builder: (_) => CupertinoListTile(
+                      leading: CircleAvatar(
+                        radius: 20,
+                        backgroundImage: NetworkImage(
+                            usersState.users[data['friendUid']]['picture'] !=
+                                    null
+                                ? usersState.users[data['friendUid']]['picture']
+                                : ''),
+                      ),
+                      onTap: () => callChatDetailScreen(
+                          context,
+                          usersState.users[data['friendUid']]['name'] != null
+                              ? usersState.users[data['friendUid']]['name']
+                              : '',
+                          data['uid']),
+                      title: Text(
+                          usersState.users[data['friendUid']]['name'] != null
+                              ? usersState.users[data['friendUid']]['name']
+                              : ''),
+                      subtitle: Text(
+                          usersState.users[data['friendUid']]['status'] != null
+                              ? usersState.users[data['friendUid']]['status']
+                              : ''),
+                    ),
                   );
                 }).toList()))
               ],

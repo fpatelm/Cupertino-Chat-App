@@ -32,26 +32,22 @@ abstract class _ChatState with Store {
       }).toList();
 
       chatDocuments.forEach((doc) {
-        FirebaseFirestore.instance.collection('chats/${doc['docid']}/messages')
-            .orderBy('createdOn',descending: true)
+        FirebaseFirestore.instance
+            .collection('chats/${doc['docid']}/messages')
+            .orderBy('createdOn', descending: true)
             .limit(1)
             .snapshots()
             .listen((QuerySnapshot snapshot) {
-              if(snapshot.docs.isNotEmpty){
-                messages[doc['name']] = {
-                  'msg': snapshot.docs.first['msg'],
-                  'time': snapshot.docs.first['createdOn'],
-                  'friendName':doc['name'],
-                  'friendUid':snapshot.docs.first['uid']
-                };
-              }
-
+          if (snapshot.docs.isNotEmpty) {
+            messages[doc['name']] = {
+              'msg': snapshot.docs.first['msg'],
+              'time': snapshot.docs.first['createdOn'],
+              'friendName': doc['name'],
+              'friendUid': snapshot.docs.first['uid']
+            };
+          }
         });
-
       });
-
-
-
     });
   }
 }
