@@ -4,6 +4,11 @@
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=fpatelm&repo=Cupertino-Chat-App)](https://github.com/anuraghazra/github-readme-stats)
 
+
+[![Faizal](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/512px-YouTube_Logo_2017.svg.png)](https://www.youtube.com/keynotecast?sub_confirmation=1)
+
+
+
 Chat App Flutter project.
 
 ## Getting Started
