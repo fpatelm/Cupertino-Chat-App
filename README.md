@@ -1,16 +1,25 @@
-# cupertino_chat_app
+# Editor.md
 
-A new Flutter project.
+![](picture.png)
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=fpatelm&repo=Cupertino-Chat-App)](https://github.com/anuraghazra/github-readme-stats)
+
+Chat App Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+The main branch is always up to date. If you want to see the code for a specific episode, clone the respective branch.
 
-A few resources to get you started if this is your first Flutter project:
+Before running the app, you need to make sure you have all the development tools on your mac os, windows or linux.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+You need to have an account on firebase console and create your project in there, this project is private to you, reason why I dont shareb it.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+After you have the project on firebase console, you can optioanlly setup firebase emulators omn your local computer to ease the development.
+
+## Collaboration
+
+If you want to work on an issue or minor features tickets, message me to add you as a collaborator to the repository.
+
+Create a branch based on main with the name as the title of the ticker by replacinbg empty spaces with "\_".
+
+Before pusghing your local branch to origin, rebase always with the newest changes on main.
