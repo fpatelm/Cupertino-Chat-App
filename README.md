@@ -1,6 +1,6 @@
 # Editor.md
 
-![](picture.png)
+[![](picture.png)](https://www.youtube.com/playlist?list=PLD46K4dpufBEMDz5UblupcWLUiS2hFBXI)
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=fpatelm&repo=Cupertino-Chat-App)](https://github.com/anuraghazra/github-readme-stats)
 
