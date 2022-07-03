@@ -2,11 +2,13 @@
 
 [![](picture.png)](https://www.youtube.com/playlist?list=PLD46K4dpufBEMDz5UblupcWLUiS2hFBXI)
 
+
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=fpatelm&repo=Cupertino-Chat-App)](https://github.com/anuraghazra/github-readme-stats)
+  
+<a href="https://www.buymeacoffee.com/keynotecast" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 
 [![Faizal](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/512px-YouTube_Logo_2017.svg.png)](https://www.youtube.com/keynotecast?sub_confirmation=1)
-
 
 
 Chat App Flutter project.
@@ -28,3 +30,13 @@ If you want to work on an issue or minor features tickets, message me to add you
 Create a branch based on main with the name as the title of the ticker by replacinbg empty spaces with "\_".
 
 Before pusghing your local branch to origin, rebase always with the newest changes on main.
+
+<h3>Video tutorials</h3>
+<ul>
+  <li><a href="https://youtu.be/ua9AfnGvP3Q" target="_blank"><b>Flutter Firebase Phone Number Authentication</b></a><br/><i>You will learn to verify phone number using Flutter Firebase Authentication API. We are going to integrate Flutter Firebase Auth API to request an OTP code, perform the OTP code verification and sign in the user in Firebase in the Flutter Chat App with Firebase.</i></li>
+
+<li><a href="https://youtu.be/zRRCY9mJNNE"><b>Flutter Firebase Firestore</b></a><br/><i>You will learn how to configure Firebase Firestore (Real-Time Database) to be used in Flutter Cloud Firesotre Chat App.</i></li>
+    
+
+<li><a href="https://youtu.be/aKYfq-VPnMA"><b>Chat Messages Flutter Firebase Firestore</b></a><br/><i>You will learn how to make queries to Firebase Cloud Firestore with filters. In this episode, we are going to engage in chat with a specific user in the people list.</i></li>
+</ul>
