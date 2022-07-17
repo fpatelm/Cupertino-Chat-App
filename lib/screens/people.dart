@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cupertino_chat_app/screens/chat_detail.dart';
 import 'package:cupertino_chat_app/states/lib.dart';
 import 'package:cupertino_list_tile/cupertino_list_tile.dart';
@@ -5,9 +6,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutterfire_ui/firestore.dart';
 
+// ignore: must_be_immutable
 class People extends StatelessWidget {
-  People({Key? key}) : super(key: key);
   var currentUser = FirebaseAuth.instance.currentUser?.uid;
 
   void callChatDetailScreen(BuildContext context, String name, String uid) {
@@ -35,29 +37,33 @@ class People extends StatelessWidget {
             ),
           ),
         ),
-        Observer(
-          builder: (_) => SliverList(
-            delegate: SliverChildListDelegate(
-              usersState.people
-                  .map(
-                    (dynamic data) => CupertinoListTile(
-                      leading: CircleAvatar(
-                        radius: 20,
-                        backgroundImage: NetworkImage(
-                            data['picture'] != null ? data['picture'] : ''),
-                      ),
-                      onTap: () => callChatDetailScreen(
-                          context,
-                          data['name'] != null ? data['name'] : '',
-                          data['uid']),
-                      title: Text(data['name'] != null ? data['name'] : ''),
-                      subtitle:
-                          Text(data['status'] != null ? data['status'] : ''),
+        SliverFillRemaining(
+          child: Observer(builder: (_) {
+            return FirestoreListView<Map<String, dynamic>>(
+                query: FirebaseFirestore.instance
+                    .collection('users')
+                    .where('name',
+                        isGreaterThanOrEqualTo: "${usersState.searchUser}")
+                    .where('name',
+                        isLessThanOrEqualTo: "${usersState.searchUser}\uf7ff"),
+                itemBuilder: (context, snapshot) {
+                  Map<String, dynamic> data = snapshot.data();
+                  if (data['uid'] == currentUser) {
+                    return Container();
+                  }
+                  return CupertinoListTile(
+                    key: UniqueKey(),
+                    leading: CircleAvatar(
+                      radius: 20,
+                      backgroundImage: NetworkImage(data['picture']),
                     ),
-                  )
-                  .toList(),
-            ),
-          ),
+                    onTap: () => callChatDetailScreen(
+                        context, data['name'], data['uid']),
+                    title: Text(data['name']),
+                    subtitle: Text(data['status']),
+                  );
+                });
+          }),
         ),
       ],
     );

@@ -26,7 +26,7 @@ abstract class _UsersState with Store {
   var _usersCollection = FirebaseFirestore.instance.collection('users');
 
   @observable
-  String _searchUser = '';
+  String searchUser = '';
 
   @computed
   List<dynamic> get people {
@@ -34,14 +34,14 @@ abstract class _UsersState with Store {
         .where((user) => user.key != _currentUser)
         .where((user) => user.value['name']
             .toLowerCase()
-            .startsWith(_searchUser.toLowerCase()))
+            .startsWith(searchUser.toLowerCase()))
         .map((e) => e.value)
         .toList();
   }
 
   @action
   setSearchTerm(String value) {
-    this._searchUser = value;
+    this.searchUser = value;
   }
 
   @action
@@ -63,7 +63,7 @@ abstract class _UsersState with Store {
 
   void takeImageFromCamera() async {
     XFile? image =
-        await _picker.pickImage(source: ImageSource.camera, imageQuality: 50);
+        await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     imagefile = File(image!.path);
     _uploadFile();
   }
@@ -75,6 +75,7 @@ abstract class _UsersState with Store {
         .child('${FirebaseAuth.instance.currentUser?.uid}/photos/profile.jpg');
 
     profileImagesRef.putFile(imagefile!).snapshotEvents.listen((taskSnapshot) {
+      print(taskSnapshot.state);
       switch (taskSnapshot.state) {
         case TaskState.running:
           break;
